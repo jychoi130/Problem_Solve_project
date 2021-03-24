@@ -1,7 +1,3 @@
-/*ÀüÀÚÄÄÇ»ÅÍ°øÇĞºÎ ¼ÒÇÁÆ®¿ş¾î°ø
-180078 ÃÖÁö¿¬
-È÷½ºÅä±×·¥*/
-
 #include<iostream>
 #include<vector>
 #include<stack>
@@ -10,11 +6,11 @@
 
 using namespace std;
 
-class Histogram { //È÷½ºÅä±×·¥ Å¬·¡½º »ı¼º
+class Histogram { //íˆìŠ¤í† ê·¸ë¨ í´ë˜ìŠ¤ ìƒì„±
 public:
-	int height;//³ôÀÌ
-	int leftX;//¿ŞÂÊº¯ x ÁÂÇ¥
-	int rightX;//¿À¸¥ÂÊº¯ x ÁÂÇ¥
+	int height;//ë†’ì´
+	int leftX;//ì™¼ìª½ë³€ x ì¢Œí‘œ
+	int rightX;//ì˜¤ë¥¸ìª½ë³€ x ì¢Œí‘œ
 
 	Histogram() {	}
 	Histogram(int index, int height) {
@@ -25,54 +21,54 @@ public:
 };
 
 long long getLargestRectangleArea(const vector<Histogram>&histograms) {
-	long long answer = 0;//ÃÖ´ë Á÷»ç°¢Çü ³ĞÀÌ
-	//int·Î ¼±¾ğ½Ã overflow ¹ß»ı
+	long long answer = 0;//ìµœëŒ€ ì§ì‚¬ê°í˜• ë„“ì´
+	//intë¡œ ì„ ì–¸ì‹œ overflow ë°œìƒ
 	stack<Histogram>stk;
 	stk.push(Histogram(-1, 0));
-	for (int i = 0; i < histograms.size() + 1; i++) //¿À¸§Â÷¼øÀ¸·Î È®Àå
+	for (int i = 0; i < histograms.size() + 1; i++) //ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ í™•ì¥
 	{
 		Histogram h;
 		if (i < histograms.size()) {
 			h = histograms[i];
 		}
 		else {
-			h = Histogram(histograms.size(), 0); //°¡Àå ¿À¸¥ÂÊ¿¡ ³ôÀÌ 0±îÁö °¡»ó È÷½ºÅä±×·¥ »ı¼º
+			h = Histogram(histograms.size(), 0); //ê°€ì¥ ì˜¤ë¥¸ìª½ì— ë†’ì´ 0ê¹Œì§€ ê°€ìƒ íˆìŠ¤í† ê·¸ë¨ ìƒì„±
 		}
 
-		while (stk.size() > 1 && stk.top().height > h.height) {//È®Àå ¸øÇÏ¸é Á¾·á
+		while (stk.size() > 1 && stk.top().height > h.height) {//í™•ì¥ ëª»í•˜ë©´ ì¢…ë£Œ
 			Histogram lh = stk.top();
 			stk.pop();
-			Histogram bh = stk.top();//»èÁ¦ Àü Å¾ ÀúÀå
-			long long width = abs(h.leftX - bh.rightX); //Â÷ÀÌ·Î °¡·Î±æÀÌ 
-			long long height = lh.height;//¼¼·Î ±æÀÌ ±¸ÇÔ
-			long long area = width * height; //¸éÀû±¸ÇÔ
+			Histogram bh = stk.top();//ì‚­ì œ ì „ íƒ‘ ì €ì¥
+			long long width = abs(h.leftX - bh.rightX); //ì°¨ì´ë¡œ ê°€ë¡œê¸¸ì´ 
+			long long height = lh.height;//ì„¸ë¡œ ê¸¸ì´ êµ¬í•¨
+			long long area = width * height; //ë©´ì êµ¬í•¨
 
-			answer = max(answer, area);//°ª °»½Å
+			answer = max(answer, area);//ê°’ ê°±ì‹ 
 		}
-		stk.push(h); //h Ãß°¡
+		stk.push(h); //h ì¶”ê°€
 	}
 	return answer;
 }
 
 void process(int caseIndex) {
-	int n;//±×·¡ÇÁ °³¼ö
+	int n;//ê·¸ë˜í”„ ê°œìˆ˜
 	cin >> n;
 
 	vector<Histogram> histograms;
 	for (int i = 0; i < n; i++) {
 		int height;
 		cin >> height;
-		histograms.push_back(Histogram(i, height)); //ÀÎµ¦½º¿Í ³ôÀÌ ¼³Á¤
+		histograms.push_back(Histogram(i, height)); //ì¸ë±ìŠ¤ì™€ ë†’ì´ ì„¤ì •
 	}
-	long long answer = getLargestRectangleArea(histograms);//°¡Àå Å« ¸éÀû ¹İÈ¯
+	long long answer = getLargestRectangleArea(histograms);//ê°€ì¥ í° ë©´ì  ë°˜í™˜
 	cout << answer << endl;
 }
 
 int main() {
-	int caseSize; //ÄÉÀÌ½º »çÀÌÁî ÀÔ·Â¹ŞÀ½
+	int caseSize; //ì¼€ì´ìŠ¤ ì‚¬ì´ì¦ˆ ì…ë ¥ë°›ìŒ
 	cin >> caseSize;
 
-	for (int caseIndex = 1; caseIndex <= caseSize; caseIndex += 1) { //ÄÉÀÌ½º »çÀÌÁî¸¸Å­ µ¹·Áº»´Ù
+	for (int caseIndex = 1; caseIndex <= caseSize; caseIndex += 1) { //ì¼€ì´ìŠ¤ ì‚¬ì´ì¦ˆë§Œí¼ ëŒë ¤ë³¸ë‹¤
 		process(caseIndex);
 	}
 }
