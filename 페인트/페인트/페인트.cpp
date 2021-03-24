@@ -1,11 +1,9 @@
-/*ÀüÀÚÄÄÇ»ÅÍ°øÇĞºÎ ¼ÒÇÁÆ®¿ş¾î°ø
-180078 ÃÖÁö¿¬*/
 #include <iostream>
 #include <vector>
 using namespace std;
 
-const int MAX_SEAT_NUMBER = 1000;//ÀÚ¸®ÀÇ ÃÖ´ë °³¼ö
-const int MAX_COLOR_NUMBER = 100; //»öÀÇ ÃÖ´ë °³¼ö
+const int MAX_SEAT_NUMBER = 1000;//ìë¦¬ì˜ ìµœëŒ€ ê°œìˆ˜
+const int MAX_COLOR_NUMBER = 100; //ìƒ‰ì˜ ìµœëŒ€ ê°œìˆ˜
 
 class Painting {
 public:
@@ -22,11 +20,11 @@ public:
 		this->color = color;
 	}
 };
-void fillFrequencyTable(int data[], int n, int table[]) //»ö¿¡ µû¸¥ ÀÚ¸´¼ö °è»ê
+void fillFrequencyTable(int data[], int n, int table[]) //ìƒ‰ì— ë”°ë¥¸ ìë¦¿ìˆ˜ ê³„ì‚°
 {
 	for (int i = 0; i < MAX_COLOR_NUMBER; i++) 
-		table[i] = 0; //¹è¿­ 0À¸·Î ÃÊ±âÈ­
-	for (int i = 0; i < n; i++) //»ö¿¡ µû¸¥ °³¼ö ±¸ÇÔ
+		table[i] = 0; //ë°°ì—´ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+	for (int i = 0; i < n; i++) //ìƒ‰ì— ë”°ë¥¸ ê°œìˆ˜ êµ¬í•¨
 	{
 		int color = data[i]; 
 		table[color] += 1;
@@ -35,46 +33,46 @@ void fillFrequencyTable(int data[], int n, int table[]) //»ö¿¡ µû¸¥ ÀÚ¸´¼ö °è»ê
 void solve(int n, int m, const Painting* paintings)
 {
 	int* seats = new int[n];
-	for (int i = 0; i < n; i++) //ÁÂ¼® ¼ö ¸¸Å­ÀÇ ¹è¿­ 0À¸·Î ÃÊ±âÈ­
+	for (int i = 0; i < n; i++) //ì¢Œì„ ìˆ˜ ë§Œí¼ì˜ ë°°ì—´ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 		seats[i] = 0;
-	for (int i = 0; i < m; i++) //»öÄ¥ÇÒ ¹æ¹ıÀÇ ¼ö
+	for (int i = 0; i < m; i++) //ìƒ‰ì¹ í•  ë°©ë²•ì˜ ìˆ˜
 	{
 		const Painting &p = paintings[i];
-		for (int j = p.left; j <= p.right; j++) //»öÄ¥ÇÒ Ã¹ ÀÚ¸®ºÎÅÍ ¸¶Áö¸· ÀÚ¸®±îÁö
-			seats[j] = p.color; //»ö ´ëÀÔ
+		for (int j = p.left; j <= p.right; j++) //ìƒ‰ì¹ í•  ì²« ìë¦¬ë¶€í„° ë§ˆì§€ë§‰ ìë¦¬ê¹Œì§€
+			seats[j] = p.color; //ìƒ‰ ëŒ€ì…
 	}
 
 	int *table = new int[MAX_COLOR_NUMBER];
-	fillFrequencyTable(seats, n, table); //»ö¸¶´Ù ÀÚ¸® ¼ıÀÚ ±¸ÇÏ±â À§ÇÑ ÇÔ¼ö
+	fillFrequencyTable(seats, n, table); //ìƒ‰ë§ˆë‹¤ ìë¦¬ ìˆ«ì êµ¬í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
 
-	int mincolor = seats[0]; //°¡Àå ÀÛÀº °ª
-	int maxcolor = seats[0]; //°¡Àå Å« °ª
+	int mincolor = seats[0]; //ê°€ì¥ ì‘ì€ ê°’
+	int maxcolor = seats[0]; //ê°€ì¥ í° ê°’
 
 	for (int color = 0; color < MAX_COLOR_NUMBER; color += 1)
 	{
-		if (table[color] == 0) //»öÀÌ 0°³ÀÎ °æ¿ì ´ÙÀ½ »öÀ¸·Î
+		if (table[color] == 0) //ìƒ‰ì´ 0ê°œì¸ ê²½ìš° ë‹¤ìŒ ìƒ‰ìœ¼ë¡œ
 			continue;
 
 		if (table[mincolor] > table[color])
-			mincolor = color; //°ªÀÌ ÃÖ¼Ò°¡ ¾Æ´Ò ½Ã º¯°æ
+			mincolor = color; //ê°’ì´ ìµœì†Œê°€ ì•„ë‹ ì‹œ ë³€ê²½
 		if (table[maxcolor] < table[color])
-			maxcolor = color; //°ªÀÌ ´õ ÃÖ´ë°¡ ¾Æ´Ò ½Ã º¯°æ
+			maxcolor = color; //ê°’ì´ ë” ìµœëŒ€ê°€ ì•„ë‹ ì‹œ ë³€ê²½
 	}
 
-	cout << maxcolor << endl << mincolor << endl; //´ä Ãâ·Â
-	delete[] seats; //¹è¿­ »èÁ¦
+	cout << maxcolor << endl << mincolor << endl; //ë‹µ ì¶œë ¥
+	delete[] seats; //ë°°ì—´ ì‚­ì œ
 }
 int main()
 {
 	int n, m;
-	cin >> n >> m; //nÁÂ¼® ¼ö,m »öÄ¥ ¹æ¹ı ¼ö
+	cin >> n >> m; //nì¢Œì„ ìˆ˜,m ìƒ‰ì¹  ë°©ë²• ìˆ˜
 
 	Painting* paintings = new Painting[n];
 	for (int i = 0; i < m; i++)
 	{
 		cin >> paintings[i].left >> paintings[i].right >> paintings[i].color;
-		paintings[i].left -= 1; //ÁÂ¼® ¹øÈ£ ¸ÂÃß±â À§ÇØ¼­
-		paintings[i].right -= 1; //ÁÂ¼® ¹øÈ£ ¸ÂÃß±â À§ÇØ
+		paintings[i].left -= 1; //ì¢Œì„ ë²ˆí˜¸ ë§ì¶”ê¸° ìœ„í•´ì„œ
+		paintings[i].right -= 1; //ì¢Œì„ ë²ˆí˜¸ ë§ì¶”ê¸° ìœ„í•´
 	}
 	solve(n, m, paintings);
 	return 0;
