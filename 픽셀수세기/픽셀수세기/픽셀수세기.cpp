@@ -1,44 +1,41 @@
-/*ÀüÀÚÄÄÇ»ÅÍ°øÇĞºÎ ¼ÒÇÁÆ®¿ş¾îÇĞ°ú
-180078 ÃÖÁö¿¬*/
-
 #include <iostream>
 using namespace std;
 
-bool isinside(long long x, long long y, long long r) //ÇÈ¼¿ÀÌ ¿ø¿¡ Æ÷ÇÔµÇ´ÂÁö È®ÀÎ
+bool isinside(long long x, long long y, long long r) //í”½ì…€ì´ ì›ì— í¬í•¨ë˜ëŠ”ì§€ í™•ì¸
 {
 	long long sqd = x * x + y * y;  
-	if (sqd < r*r) //°ªÀÌ ¿øÀÇ Å©±âº¸´Ù ÀÛÀ¸¸é
+	if (sqd < r*r) //ê°’ì´ ì›ì˜ í¬ê¸°ë³´ë‹¤ ì‘ìœ¼ë©´
 		return true;
 	return false;
 }
 void testcase(int caseindex)
 {
-	long long r; //¹İÁö¸§ ¹ŞÀ» º¯¼ö
-	scanf("%lld", &r); //¹İÁö¸§ ÀÔ·Â
-	long long sum = 0; //1»çºĞ¸éÀÇ ÇÈ¼¿ °³¼ö 
-	long long y = r; //¹İÁö¸§ ±æÀÌ yÃà¿¡ ÀÔ·Â
+	long long r; //ë°˜ì§€ë¦„ ë°›ì„ ë³€ìˆ˜
+	scanf("%lld", &r); //ë°˜ì§€ë¦„ ì…ë ¥
+	long long sum = 0; //1ì‚¬ë¶„ë©´ì˜ í”½ì…€ ê°œìˆ˜ 
+	long long y = r; //ë°˜ì§€ë¦„ ê¸¸ì´ yì¶•ì— ì…ë ¥
 	for (long x = 0; x <= r; x++)
 	{
 		long long height = 0;
-		for (; y >= 0; y--) //yÃàÀ» À§¿¡¼­ºÎÅÍ È®ÀÎ
+		for (; y >= 0; y--) //yì¶•ì„ ìœ„ì—ì„œë¶€í„° í™•ì¸
 		{
-			if (isinside(x, y, r)) { //isinside°¡ ÂüÀÌ¸é ¹ØÀÇ ÇÈ¼¿Àº ÀüºÎ Æ÷ÇÔµÈ´Ù.
+			if (isinside(x, y, r)) { //isinsideê°€ ì°¸ì´ë©´ ë°‘ì˜ í”½ì…€ì€ ì „ë¶€ í¬í•¨ëœë‹¤.
 				height = y + 1; 
 				break;
 			}
 		}
-		sum += height; //°³¼ö¸¦ ´õÇØÁØ´Ù
+		sum += height; //ê°œìˆ˜ë¥¼ ë”í•´ì¤€ë‹¤
 	}
 	cout << "#" << caseindex << endl;
-	cout << sum * 4 << endl; //Áß½ÉÀ» ±âÁØÀ¸·Î ºĞ¸éÀÌ 4°³ Á¸Àç
+	cout << sum * 4 << endl; //ì¤‘ì‹¬ì„ ê¸°ì¤€ìœ¼ë¡œ ë¶„ë©´ì´ 4ê°œ ì¡´ì¬
 }
 int main()
 {
-	int casesize; //ÄÉÀÌ½º °³¼ö ¹ŞÀ» º¯¼ö
+	int casesize; //ì¼€ì´ìŠ¤ ê°œìˆ˜ ë°›ì„ ë³€ìˆ˜
 	cin >> casesize;
 	
-	for (int caseindex = 1; caseindex <= casesize; caseindex++) //ÄÉÀÌ½º °³¼ö¸¸Å­
-		testcase(caseindex); //Å×½ºÆ®ÄÉÀÌ½ºÇÔ¼ö ½ÇÇà
+	for (int caseindex = 1; caseindex <= casesize; caseindex++) //ì¼€ì´ìŠ¤ ê°œìˆ˜ë§Œí¼
+		testcase(caseindex); //í…ŒìŠ¤íŠ¸ì¼€ì´ìŠ¤í•¨ìˆ˜ ì‹¤í–‰
 
 	return 0;
 }
