@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "세카드", "세카드\세카드.vcxproj", "{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Debug|x64.ActiveCfg = Debug|x64
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Debug|x64.Build.0 = Debug|x64
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Debug|x86.ActiveCfg = Debug|Win32
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Debug|x86.Build.0 = Debug|Win32
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Release|x64.ActiveCfg = Release|x64
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Release|x64.Build.0 = Release|x64
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Release|x86.ActiveCfg = Release|Win32
+		{713ACD00-5C93-4CE6-BA32-4F36DEB09F2F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95A7FD3E-AA74-4AB8-BE7B-5326EF350F10}
+	EndGlobalSection
+EndGlobal
