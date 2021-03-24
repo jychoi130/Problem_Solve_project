@@ -1,5 +1,3 @@
-/*ÀüÀÚÄÄÇ»ÅÍ°øÇĞºÎ ¼ÒÇÁÆ®¿ş¾î°ø
-180078 ÃÖÁö¿¬*/
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -7,17 +5,17 @@ using namespace std;
 const int MAX_N = 1000000; 
 vector<int> FIBONACCI_TABLE;
 
-vector<int> makeFibonacciTable(int n) //ÇÇº¸³ªÄ¡ °ª 
+vector<int> makeFibonacciTable(int n) //í”¼ë³´ë‚˜ì¹˜ ê°’ 
 {
-	const int MOD = 100000000; //MOD°ª ÁöÁ¤
+	const int MOD = 100000000; //MODê°’ ì§€ì •
 
 	vector<int> ret(n + 1);
 	ret[1] = 0;
 	ret[2] = 1;
-	for (int i = 3; i <= n; ++i) //ÇÇº¸³ªÄ¡ ¼ö¿­ °è»ê
+	for (int i = 3; i <= n; ++i) //í”¼ë³´ë‚˜ì¹˜ ìˆ˜ì—´ ê³„ì‚°
 	{
 		ret[i] = ret[i - 1] + ret[i - 2]; 
-		ret[i] %= MOD; //MOD°ª ³ÑÀ¸¸é MODÀÇ ³ª¸ÓÁö¸¸ Ãâ·Â
+		ret[i] %= MOD; //MODê°’ ë„˜ìœ¼ë©´ MODì˜ ë‚˜ë¨¸ì§€ë§Œ ì¶œë ¥
 	}
 	return ret;
 }
@@ -40,6 +38,6 @@ int main()
 		int answer = getFibo(n);
 		cout << answer << endl;
 	}
-	FIBONACCI_TABLE.clear(); //ÃÊ±âÈ­
+	FIBONACCI_TABLE.clear(); //ì´ˆê¸°í™”
 	return 0;
 }
